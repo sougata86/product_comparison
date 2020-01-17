@@ -33,8 +33,8 @@ export class HomeComponent implements OnInit {
   fliterParam = [];
   fiteredListShow: boolean = false;
 
-  range_slider_minValue: number = 0;
-  range_slider_maxValue: number = 800;
+  range_slider_minValue = 0;
+  range_slider_maxValue = 800;
   range_slider_options: Options = {
     floor: 0,
     ceil: 800,
@@ -181,10 +181,10 @@ export class HomeComponent implements OnInit {
     this.es.getUniqueBrands().then((res) => {
       this.all_brands = res.aggregations.distinct_brands.buckets;
       this.showing_brands = this.all_brands.slice(0, 3);
-    }, error => {
-      console.error('Server is down', error);
     }).then(() => {
       this.cd.detectChanges();
+    }).catch(error => {
+      console.error('Server is down', error);
     });
   }
 
