@@ -10,7 +10,7 @@ import * as _ from 'underscore';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
-  sub;
+  sub: any;
   productDetails: any;
   bestDeal: any;
   otherDeal: any;
@@ -30,7 +30,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   /**
   * Gets the details of the product
   */
-  getDetails(id) {
+  getDetails(id: any): void {
     this.es.getDocumentByID(id).then((res) => {
       this.productDetails = res.hits.hits[0];
       // console.log(res.hits.hits[0]);
