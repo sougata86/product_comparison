@@ -11,7 +11,7 @@
 // };
 
 export const environment = {
-  production: true,
+  production: false,
   elasticSearchUrl: 'http://111.93.162.238:9200/',
   searchIndex: 'new-test-comparison',
   searchType: 'new-test-comparison',
