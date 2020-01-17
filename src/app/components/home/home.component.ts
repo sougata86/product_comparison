@@ -81,8 +81,10 @@ export class HomeComponent implements OnInit {
     this.top3ReviewedProducts();
   }
 
-
-  getProducts() {
+  /**
+  * Gets the products
+  */
+  getProducts(): void {
     const fetchedIndex = (environment.noOfRecoreds * this.currentPage) + this.currentPage;
     this.es.getAllDocuments(fetchedIndex, this.fliterParam).then((res) => {
       // console.log(res)
@@ -110,15 +112,17 @@ export class HomeComponent implements OnInit {
         this.all_products = res.hits.hits;
       }
 
-    }, error => {
-      console.error('Server is down', error);
     }).then(() => {
       this.cd.detectChanges();
+    }).catch((error) => {
+      console.error('Server is down', error);
     });
   }
 
-
-  getFilteredProducts() {
+  /**
+  * Gets all the products filtered
+  */
+  getFilteredProducts(): void {
     const fetchedIndex = (environment.noOfRecoreds * this.currentPage) + this.currentPage;
     this.es.getAllDocuments(fetchedIndex, this.fliterParam).then((res) => {
       // console.log(res)
@@ -146,13 +150,16 @@ export class HomeComponent implements OnInit {
         this.all_filtered_products = res.hits.hits;
       }
 
-    }, error => {
-      console.error('Server is down', error);
     }).then(() => {
       this.cd.detectChanges();
-    });
+    }).catch((error) => {
+      console.error('Server is down', error);
+    })
   }
 
+  /**
+  * Gtes the top reviewed products
+  */
   top3ReviewedProducts() {
     this.es.top3Reviewedproducts().then((res) => {
       this.top_3_products = res.hits.hits;
@@ -161,11 +168,11 @@ export class HomeComponent implements OnInit {
         item.minPrice = Math.min(...retailers.map(({ Price }) => Price));
         item.avgRating = Number((retailers.reduce((total, next) => total + next.Rating, 0) / retailers.length).toFixed(1));
       });
-    }, error => {
-      console.error('Server is down', error);
     }).then(() => {
       this.cd.detectChanges();
-    });
+    }).catch((error) => {
+      console.error('Server is down', error);
+    })
   }
 
   // Brand Filter Section Start
@@ -181,11 +188,17 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /**
+  * Showing more brands in the brand lists
+  */
   moreBrands() {
     this.showing_brands = this.all_brands;
     this.isMoreBrandShow = false;
   }
-
+  
+  /**
+  * Showing less brands in the brand lists
+  */
   lessBrands() {
     this.showing_brands = this.all_brands.slice(0, 3);
     this.isMoreBrandShow = true;
@@ -200,11 +213,11 @@ export class HomeComponent implements OnInit {
     this.es.getUniqueCapacity().then((res) => {
       this.all_capacity = res.aggregations.distinct_capacity.buckets;
       this.showing_capacity = this.all_capacity.slice(0, 3);
-    }, error => {
-      console.error('Server is down', error);
     }).then(() => {
       this.cd.detectChanges();
-    });
+    }).catch(error => {
+      console.error('Server is down', error);
+    })
   }
 
   moreCapacity() {
