@@ -1,0 +1,187 @@
+<div class="container">
+  <div class="product-features">
+    <ul>
+      <li class="useric">Products rated by you, the real “expert”</li>
+      <li class="trophyic">Best product based on thousands of reviews</li>
+      <li class="dollaric">Daily updated prices for the best deal</li>
+    </ul>
+  </div>
+  <div class="optionsec">
+    <ul>
+      <li><a routerLink="#">Quick replacement</a></li>
+      <li><a routerLink="#">Family friendly</a></li>
+      <li><a routerLink="#">Big capacity</a></li>
+      <li><a routerLink="#">Cheapest</a></li>
+      <li><a routerLink="#">Energy efficient</a></li>
+      <li><a routerLink="#">Need help?</a></li>
+    </ul>
+  </div>
+
+  <div class="bradcums">
+    <ul>
+      <li><a rotuerLink="#">{{document.location.hostname}}</a></li>
+      <li><a rotuerLink="#">Wasmachines</a></li>
+      <li><a rotuerLink="#">{{productDetails?._source.Brand}}</a></li>
+      <li>{{productDetails?._source.Title}}</li>
+    </ul>
+  </div>
+
+  <div class="product-detailtop">
+    <div class="row">
+      <div class="col-7">
+        <div class="productlft">
+          <h2>{{productDetails?._source.Title}}</h2>
+          <div class="prodstar_reviews">
+            <star-rating *ngIf="productDetails?._source.OverallRating" [starType]="'svg'"
+              [rating]="productDetails?._source.OverallRating">
+            </star-rating>
+            <ul>
+              <li><a routerLink="">{{productDetails?._source.Reviews}} reviews</a></li>
+              <li>{{productDetails?._source.EnergyClass}}</li>
+              <li>{{productDetails?._source.Capacity}}</li>
+              <li>{{productDetails?._source.SoundLevelWash}}</li>
+            </ul>
+          </div>
+          <div class="productingsec detailspgimg">
+            <img [src]="productDetails?._source.ProductImageURL" alt="">
+            <span class="ratingcount">{{productDetails?._source.OverallRating}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="best-dealsec">
+          <h3>Best deal</h3>
+          <ul>
+            <li>
+              <a href="{{productDetails?._source.retailers[0].ProductURL}}" target="_blank">
+                <div class="innerdeal">
+                  <figure><img src="{{productDetails?._source.retailers[0].logo}}" alt=""></figure>
+                  <span>in-stock</span>
+                  <h4>${{productDetails?._source.retailers[0].Price}}</h4>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="also_available"
+          *ngIf="productDetails?._source.retailers && productDetails?._source.retailers.length > 1">
+          <h3>Also available at</h3>
+          <ul>
+            <li *ngFor="let prod of productDetails?._source.retailers | slice:1">
+              <a href="{{prod.ProductURL}}" target="_blank">
+                <div class="innerdeal">
+                  <figure><img src="{{prod.logo}}" alt=""></figure>
+                  <span>in-stock</span>
+                  <h4>${{prod.Price}}</h4>
+                </div>
+              </a>
+            </li>
+            <!-- <li>
+              <a routerLink="#">
+                <div class="innerdeal">
+                  <figure><img src="assets/images/bolcom.png" alt=""></figure>
+                  <span>in-stock</span>
+                  <h4>$766</h4>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a routerLink="#">
+                <div class="innerdeal">
+                  <figure><img src="assets/images/mediaic.png" alt=""></figure>
+                  <span>in-stock</span>
+                  <h4>$766</h4>
+                </div>
+              </a>
+            </li> -->
+          </ul>
+        </div>
+
+        <div class="product_detailsec">
+          <h3>Product details</h3>
+          <ul>
+            <li>{{productDetails?._source.EnergyClass}} energyclass</li>
+            <li>{{productDetails?._source.Capacity}} capacity</li>
+            <li>{{productDetails?._source.SoundLevelWash}} sound level</li>
+          </ul>
+          <a href="#dv_product_details">More details</a>
+        </div>
+        <div class="helpbtn-youtubebtn">
+          <a href="Javascript:Void(0);" class="helpbtn"><span>Need help?</span></a>
+          <a href="Javascript:Void(0);"><img src="assets/images/youtubebtn.png" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="productdetailsbot">
+    <div class="row">
+      <div class="col-7">
+        <div class="productdes-item">
+          <h3>Pro’s & Con’s</h3>
+          <ul>
+            <li class="pros" *ngFor="let pros of productDetails?._source?.pros">{{pros}}</li>
+            <!-- <li>Very energy efficient</li>
+            <li>Big capacity with 8kg</li> -->
+            <li class="cons" *ngFor="let cons of productDetails?._source?.cons">{{cons}}</li>
+          </ul>
+          <!-- <ul>
+            <li>With the ProSteam steaming function, you can refresh your clothes and there’s.</li>
+            <li>Very energy efficient</li>
+            <li>Big capacity with 8kg</li>
+            <li>No programs</li>
+          </ul> -->
+        </div>
+        <div class="productdes-item">
+
+          <h3>Product description</h3>
+          <p>The efficient A+++-50% AEG L8FB86ES is suitable for households of 3 to 4 persons thanks to its load
+            capacity of 8kg. The load sensor measures exactly how much laundry is placed in the drum and adjusts its
+            water and energy usage accordingly. The 10 different laundry cycles are suitable for every type of laundry.
+            Thanks to the ÖKOMix technology, laundry detergent and water are mixed to better help it spread across your
+            laundry. This allows you to wash at low temperatures as well, saving you energy. After washing, the machine
+            spins </p>
+        </div>
+        <div class="productdes-item" id="dv_product_details">
+          <h3>Product details</h3>
+          <ul class="prodcut_descrip">
+            <li>{{productDetails?._source.EnergyClass}} energyclass</li>
+            <li>{{productDetails?._source.RPM}}</li>
+            <li>{{productDetails?._source.Capacity}} capacity</li>
+            <li>{{productDetails?._source.LengthDrainHose}} drain hose</li>
+            <li>{{productDetails?._source.SoundLevelWash}}</li>
+            <li>{{productDetails?._source.LengthSupplyHose}} supply hose</li>
+            <li>{{productDetails?._source.Brand}}</li>
+            <li>{{productDetails?._source.Color}}</li>
+            <li>{{productDetails?._source.Depth}}</li>
+            <li>7 programs</li>
+            <li>Start / Stop system</li>
+            <li>Start / Stop system</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="buy-wash-tips">
+          <ul>
+            <li>
+              <figure><img src="assets/images/buyingtips.jpg" alt=""></figure>
+              <div class="buy-washcont">
+                <h3>Buying tips</h3>
+                <p>What to look for in a washingmachine</p>
+              </div>
+            </li>
+            <li>
+              <figure><img src="assets/images/washtips.jpg" alt=""></figure>
+              <div class="buy-washcont">
+                <h3>Washmachine tips</h3>
+                <p>Maintance & cleaning for a life of washing</p>
+              </div>
+            </li>
+          </ul>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

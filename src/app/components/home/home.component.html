@@ -1,0 +1,258 @@
+<div class="container">
+  <div class="product-features">
+    <ul>
+      <li class="useric">Products rated by you, the real “expert”</li>
+      <li class="trophyic">Best product based on thousands of reviews</li>
+      <li class="dollaric">Daily updated prices for the best deal</li>
+    </ul>
+  </div>
+  <div class="optionsec">
+    <ul>
+      <li><a routerLink="#">Quick replacement</a></li>
+      <li><a routerLink="#">Family friendly</a></li>
+      <li><a routerLink="#">Big capacity</a></li>
+      <li><a routerLink="#">Cheapest</a></li>
+      <li><a routerLink="#">Energy efficient</a></li>
+      <li><a routerLink="#">Need help?</a></li>
+    </ul>
+  </div>
+
+  <div class="bradcums">
+    <ul>
+      <li><a>{{document.location.hostname}}</a></li>
+      <li><a rotuerLink="#">Wasmachines</a></li>
+    </ul>
+  </div>
+
+  <div class="listingsec">
+    <div class="row">
+      <div class="col-3">
+        <div class="filtersec">
+          <div class="filteritem">
+            <h3>Brands</h3>
+            <ul>
+              <li *ngFor="let brand of showing_brands;">
+                <span class="support_forminptradio">
+                  <label>
+                    <input type="checkbox" (change)="filter($event,'Brand')" value="{{brand.key | titlecase}}"
+                      name="{{brand.key}}">
+                    <span class="support_forminptradio_label">{{brand.key | titlecase}}</span>
+                  </label>
+                </span>
+              </li>
+              <li><a href="javascript:;" *ngIf="isMoreBrandShow" (click)="moreBrands()">More …</a></li>
+              <li><a href="javascript:;" *ngIf="!isMoreBrandShow" (click)="lessBrands()">Less …</a></li>
+            </ul>
+          </div>
+          <div class="filteritem">
+            <h3>Capacity</h3>
+            <ul>
+              <li *ngFor="let capacity of showing_capacity;">
+                <span class="support_forminptradio">
+                  <label>
+                    <input type="checkbox" (change)="filter($event,'Capacity')" value="{{capacity.key}}"
+                      name="{{capacity.key}}">
+                    <span class="support_forminptradio_label">{{capacity.key}}</span>
+                  </label>
+                </span>
+              </li>
+              <li><a href="javascript:;" *ngIf="isMoreCapacityShow" (click)="moreCapacity()">More …</a></li>
+              <li><a href="javascript:;" *ngIf="!isMoreCapacityShow" (click)="lessCapacity()">Less …</a></li>
+            </ul>
+          </div>
+          <div class="filteritem">
+            <h3>Energyclass</h3>
+            <ul>
+              <li *ngFor="let ec of showing_energyClass;">
+                <span class="support_forminptradio">
+                  <label>
+                    <input type="checkbox" (change)="filter($event,'EnergyClass')" value="{{ec.key}}" name="{{ec.key}}">
+                    <span class="support_forminptradio_label">{{ec.key}}</span>
+                  </label>
+                </span>
+              </li>
+              <li><a href="javascript:;" *ngIf="isMoreEnergyClassShow" (click)="moreEnergyClass()">More …</a></li>
+              <li><a href="javascript:;" *ngIf="!isMoreEnergyClassShow" (click)="lessEnergyClass()">Less …</a>
+              </li>
+            </ul>
+          </div>
+          <div class="filteritem">
+            <h3>Price range</h3>
+            <ng5-slider [(value)]="range_slider_minValue" [(highValue)]="range_slider_maxValue" [options]="range_slider_options" (userChangeEnd)="onUserChange($event)"></ng5-slider>
+          </div>
+          <div class="filteritem">
+            <h3>Availability</h3>
+            <ul>
+              <li><span class="support_forminptradio">
+                  <label><input type="checkbox" name="name1">
+                    <span class="support_forminptradio_label">Today</span>
+                  </label>
+                </span></li>
+              <li><span class="support_forminptradio">
+                  <label><input type="checkbox" name="name1">
+                    <span class="support_forminptradio_label">Tomorrow</span>
+                  </label>
+                </span></li>
+              <li><span class="support_forminptradio">
+                  <label><input type="checkbox" name="name1">
+                    <span class="support_forminptradio_label">This Week</span>
+                  </label>
+                </span></li>
+              <li><span class="support_forminptradio">
+                  <label><input type="checkbox" name="name1">
+                    <span class="support_forminptradio_label">Next Week</span>
+                  </label>
+                </span></li>
+            </ul>
+          </div>
+          <div class="filteritem">
+            <h3>Washingmachines</h3>
+            <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+              standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+              to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+              typesetting, remaining essentially </p>
+          </div>
+        </div>
+        <div class="filtersecmob">
+          <h3>FILTER</h3>
+          <ul class="filterHeading">
+            <li><a routerLink="#">Brand</a></li>
+            <li><a routerLink="#">Capacity</a></li>
+            <li><a routerLink="#">Energyclass</a></li>
+            <li><a routerLink="#">Price range</a></li>
+            <li><a routerLink="#">Availability</a></li>
+            <li><a routerLink="#">Washingmachines</a></li>
+          </ul>
+          <ul class="filtercont">
+            <li><a routerLink="#">Samsung</a></li>
+            <li><a routerLink="#">LG</a></li>
+            <li><a routerLink="#">AEG</a></li>
+            <li><a routerLink="#">Whirlpool</a></li>
+            <li><a routerLink="#">Miele</a></li>
+            <li><a routerLink="#">Bosch</a></li>
+            <li><a routerLink="#">AEG</a></li>
+            <li><a routerLink="#">Whirlpool</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="pro-listingsec" *ngIf="!fiteredListShow">
+          <h2>Wasmachines</h2>
+          <h3>TOP 3 | <a href="javascript:;">HIGHEST REVIEW SCORE</a></h3>
+          <div class="row" *ngIf="top_3_products.length > 0">
+            <div class="col-4" *ngFor="let product of top_3_products; let i=index;">
+              <div class="product-innner">
+                <div class="productimgsec">
+                  <a [routerLink]="['/product-details',product?._id]" class="productimg-link">
+                    <img [src]="product?._source.ProductImageURL" onError="this.src='assets/images/no-img.jpg';" alt="" /></a>
+                  <span class="top-prorating">{{product?._source.OverallRating}}</span>
+                </div>
+                <div class="productdetail">
+                  <h3><span>{{i+1}}</span><a
+                      [routerLink]="['/product-details',product?._id]">{{product?._source.Title}}</a></h3>
+                  <div class="starimg">
+                    <star-rating [starType]="'svg'" [rating]="product?._source.OverallRating"></star-rating>
+                    <span>{{product?._source.OverallRating}}</span>
+                  </div>
+                  <ul class="prodetails">
+                    <li>{{product?._source.OverallReviews}} reviews</li>
+                    <li>{{product?._source.Capacity}} capacity</li>
+                    <li>{{product?._source.EnergyClass}} energy class</li>
+                    <li>{{product?._source.SoundLevelWash}} soundlevel</li>
+                  </ul>
+                  <div class="pricesec">
+                    <h4>Cheapest deal</h4>
+                    <h5>${{product?.minPrice.toFixed(2)}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pro-listingsec otherproducts" *ngIf="!fiteredListShow">
+          <h3>OTHER OPTIONS | <a href="javascript:;">ALSO GREAT</a></h3>
+          <div class="row" *ngIf="all_products.length > 0">
+            <div class="col-4" *ngFor="let product of all_products; let i=index;">
+              <div class="product-innner">
+                <div class="productimgsec">
+                  <a [routerLink]="['/product-details',product?._id]" class="productimg-link">
+                    <img [src]="product?._source.ProductImageURL" onError="this.src='assets/images/no-img.jpg';" alt="" />
+                  </a>
+
+                  <span class="top-prorating">{{product?._source.OverallRating > 0 ? product?._source.OverallRating : 'No Rating'}}</span>
+                </div>
+                <div class="productdetail">
+                  <h3><a [routerLink]="['/product-details',product?._id]">{{product?._source.Title}}</a></h3>
+                  <div class="starimg">
+                    <star-rating [starType]="'svg'" [rating]="product?._source.OverallRating"></star-rating>
+                    <span>{{product?._source.OverallRating}}</span>
+                  </div>
+                  <ul class="prodetails">
+                    <li>{{product?._source.OverallReviews}} reviews</li>
+                    <li>{{product?._source.Capacity}} capacity</li>
+                    <li>{{product?._source.EnergyClass}} energy class</li>
+                    <li>{{product?._source.SoundLevelWash}} soundlevel</li>
+                  </ul>
+                  <div class="pricesec">
+                    <h4>Cheapest deal</h4>
+                    <h5>${{product?.minPrice.toFixed(2)}}</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="morebtnwrap" *ngIf="totalProductCount > 0">
+            <a href="javascript:void(0);" (click)="getProducts()" class="morebtn">More …</a>
+          </div>
+        </div>
+
+        <div class="pro-listingsec otherproducts" *ngIf="fiteredListShow">
+          <h2>Wasmachines</h2>
+          <div *ngIf="all_filtered_products.length > 0">
+            <h3>FILTERED PRODUCTS | <a href="javascript:;">ALSO GREAT</a></h3>
+            <div class="row">
+              <div class="col-4" *ngFor="let product of all_filtered_products; let i=index;">
+                <div class="product-innner">
+                  <div class="productimgsec">
+                    <a [routerLink]="['/product-details',product?._id]" class="productimg-link">
+                      <img [src]="product?._source.ProductImageURL" onError="this.src='assets/images/no-img.jpg';" alt="" />
+                    </a>
+
+                    <span class="top-prorating">{{product?._source.OverallRating > 0 ? product?._source.OverallRating : 'No Rating'}}</span>
+                  </div>
+                  <div class="productdetail">
+                    <h3><a [routerLink]="['/product-details',product?._id]">{{product?._source.Title}}</a></h3>
+                    <div class="starimg">
+                      <star-rating [starType]="'svg'" [rating]="product?._source.OverallRating"></star-rating>
+                      <span>{{product?._source.OverallRating}}</span>
+                    </div>
+                    <ul class="prodetails">
+                      <li>{{product?._source.Reviews}} reviews</li>
+                      <li>{{product?._source.Capacity}} capacity</li>
+                      <li>{{product?._source.EnergyClass}} energy class</li>
+                      <li>{{product?._source.SoundLevelWash}} soundlevel</li>
+                    </ul>
+                    <div class="pricesec">
+                      <h4>Cheapest deal</h4>
+                      <h5>${{product?.minPrice.toFixed(2)}}</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="morebtnwrap" *ngIf="totalProductCount > 0">
+              <a href="javascript:void(0);" (click)="getFilteredProducts()" class="morebtn">More …</a>
+            </div>
+          </div>
+
+          <div *ngIf="all_filtered_products.length == 0">
+            <h3>No Data Found</h3>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,100 @@
+.footer{
+    .foot-top{
+        padding: 0;
+        border-top:3px dashed #BFBFBF;
+        border-bottom:3px dashed #BFBFBF;
+    }
+    .foot-bot{
+        .foot-links{
+            padding: 30px 0 30px 0;
+            h3{
+                font-size: 18px;
+                color: #4A4A4A;
+                font-weight: 700;
+                line-height:22px;
+                margin-bottom: 3px;
+            }
+            ul{
+                li{
+                    
+                    font-size: 18px;
+                    line-height: 22px;
+                    a{
+                        color: #4A4A4A;
+                        &:hover{
+                            color: #2369FF;
+                        }
+                    }
+                }
+                &.social-foot{
+                    li{
+                        display: inline-block;
+                        padding-right: 10px;
+                        a{
+                            display: inline-block;
+                            width: 58px;
+                            height: 58px;
+                            border-radius: 50%;
+                            border:1px solid #979797;
+                            text-align: center;
+                            color: #979797;
+                            line-height: 58px;
+                            font-size: 25px;
+                            &:hover{
+                                color: #fff;
+                                background: #979797;
+                            }
+                            @media(max-width: 991px){
+                                width: 40px;
+                                height: 40px;
+                                line-height: 40px;
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+            @media(max-width:767px){
+                .col-3{
+                    flex: 0 0 50%;
+                    max-width: 50%;
+                    margin-bottom: 30px;
+                }
+                .row{
+                    margin-bottom: -30px;
+                }
+                
+            }
+            @media(max-width:375px){
+                .col-3{
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                    margin-bottom: 30px;
+                } 
+            }
+
+        }
+        .footlogo{
+            text-align: center;
+            margin-bottom: 38px;
+        }
+        .privacysec{
+            text-align: center;
+            margin-bottom: 18px;
+            li{
+                display: inline-block;
+                margin-right: 38px;
+                &:last-child{
+                    margin-right: 0;
+                }
+                a{
+                    color: #4A4A4A;
+                    font-size: 12px;
+                    &:hover{
+                        color: #2369FF;
+                    }
+                }
+            }
+        }
+    }
+}

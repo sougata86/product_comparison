@@ -1,0 +1,33 @@
+<header class="header">
+  <div class="header_top">
+    <p><strong>JUST ANNOUNCED:</strong> top 10 deals of 2019!<a routerLink="Javascript:Void(0)"><img
+          src="assets/images/cross.png" alt=""></a></p>
+  </div>
+  <div class="header_bot" id="header_bot">
+    <a routerLink="" class="logo"><img src="assets/images/logo.png" alt=""></a>
+
+    <div class="navpart">
+      <button (click)="toggle()" class="responsive-toggle">
+        <i class="material-icons">
+          menu
+        </i>
+      </button>
+      <div class="innernav" [class.show]="isShow">
+        <button (click)="toggle()" class="closebut">
+          <i class="material-icons">
+            close
+          </i>
+        </button>
+        <div class="front-nav">
+          <ul>
+            <li><a rotuerLink="Javascript:Void(0)">Categories</a></li>
+            <li><a rotuerLink="Javascript:Void(0)">How this work</a></li>
+            <li><a rotuerLink="Javascript:Void(0)">About us</a></li>
+          </ul>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
