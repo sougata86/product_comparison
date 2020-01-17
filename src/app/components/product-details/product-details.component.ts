@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, Inject } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Inject, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ElasticsearchService } from '../../services';
@@ -9,8 +9,8 @@ import * as _ from 'underscore';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit {
-
+export class ProductDetailsComponent implements OnInit, OnDestroy {
+  sub;
   productDetails: any;
   bestDeal: any;
   otherDeal: any;
@@ -22,11 +22,14 @@ export class ProductDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(param => {
+    this.sub = this.activatedRoute.params.subscribe(param => {
       this.getDetails(param.id);
     });
   }
-
+  
+  /**
+  * Gets the details of the product
+  */
   getDetails(id) {
     this.es.getDocumentByID(id).then((res) => {
       this.productDetails = res.hits.hits[0];
@@ -48,11 +51,15 @@ export class ProductDetailsComponent implements OnInit {
 
       // this.productDetails.avgRating = Number((this.productDetails._source.retailers.reduce((total, next) => total + next.Rating, 0) / this.productDetails._source.retailers.length).toFixed(1));
       // console.log(this.productDetails)
-    }, error => {
-      console.error('Server is down', error);
     }).then(() => {
       this.cd.detectChanges();
+    }).catch(error => {
+      console.error('Server is down', error);
     });
+  }
+  
+  ngOnDestroy {
+    this.sub.unsubscribe();
   }
 
 }
